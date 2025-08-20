@@ -1,48 +1,158 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Your Name — Playlists</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css" />
-<meta name="description" content="A playful, Spotify‑style portfolio that organizes experiences and projects into playlists." />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siddhant Sood — Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="Siddhant Sood - AI/ML Engineer & Researcher Portfolio" />
 </head>
 <body>
-<div class="app" id="app">
-<!-- Sidebar -->
-<aside class="sidebar" aria-label="Playlists navigation">
-<div class="sidebar__brand" id="brand">Your Name</div>
-<nav id="sidebar-nav" class="sidebar__nav" role="navigation"></nav>
-<div class="sidebar__footer">© <span id="year"></span> You</div>
-</aside>
+    <div class="app" id="app">
+        <!-- Sidebar -->
+        <aside class="sidebar" aria-label="Navigation">
+            <div class="sidebar__brand">
+                <h1>Your Library</h1>
+                <button class="brand-home-btn" id="home-btn" title="Go to Home">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M10.707 2.293a1 1 0 0 0-1.414 0l-7 7a1 1 0 0 0 1.414 1.414L4 10.414V17a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-6.586l.293.293a1 1 0 0 0 1.414-1.414l-7-7z"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="sidebar__section">
+                <h2 class="sidebar__section-title">Playlists</h2>
+                <nav class="sidebar__nav" role="navigation">
+                    <ul class="nav-list">
+                        <li><a href="#experiences" class="nav-item" data-playlist="experiences">
+                            <span class="nav-icon">🎯</span>
+                            <span>Experiences</span>
+                        </a></li>
+                        <li><a href="#projects" class="nav-item" data-playlist="projects">
+                            <span class="nav-icon">🛠️</span>
+                            <span>Projects</span>
+                        </a></li>
+                        <li><a href="#awards" class="nav-item" data-playlist="awards">
+                            <span class="nav-icon">🏆</span>
+                            <span>Awards & Highlights</span>
+                            </a></li>
+                        <li><a href="#contact" class="nav-item" data-playlist="contact">
+                            <span class="nav-icon">📬</span>
+                            <span>Contact & Profiles</span>
+                        </a></li>
+                    </ul>
+                </nav>
+            </div>
+            
+            <div class="sidebar__footer">
+                <div class="user-info">
+                    <div class="user-avatar">SS</div>
+                    <div class="user-details">
+                        <div class="user-name">Siddhant Sood</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
 
+        <!-- Main Content -->
+        <main class="main" role="main">
+            <!-- Header -->
+            <header class="header" id="header">
+                <div class="header__cover" id="header-cover">
+                    <div class="cover-gradient"></div>
+                    <div class="profile-pic">
+                        <div class="profile-initials">SS</div>
+                    </div>
+                </div>
+                <div class="header__meta">
+                    <div class="header__kicker"></div>
+                    <h1 class="header__title" id="header-title">Experiences</h1>
+                    <p class="header__desc" id="header-desc">Showcasing my professional journey and achievements</p>
+                    <div class="header__actions">
+                        <div class="search-container">
+                            <input type="search" id="search" placeholder="Search..." class="search-input">
+                            <span class="search-icon">🔍</span>
+                        </div>
+                        <button class="btn btn--primary" id="play-btn">
+                            <span class="btn-icon">▶️</span>
+                        </button>
+                    </div>
+                </div>
+            </header>
 
-<!-- Main -->
-<main class="main" role="main">
-<header id="header" class="header" role="banner">
-<div class="header__cover" id="header-cover" aria-hidden="true">🎵</div>
-<div class="header__meta">
-<div class="header__kicker">Portfolio Playlist</div>
-<h1 id="header-title" class="header__title">Title</h1>
-<p id="header-desc" class="header__desc">Description</p>
-<div class="header__sub">
-<button id="play-toggle" class="btn" aria-pressed="false" aria-label="Play/Pause">Play</button>
-<label class="search">
-<input id="search" type="search" placeholder="Search within this playlist (press /)" aria-label="Search within this playlist"/>
-<span class="search__hint">/</span>
-</label>
-<span id="count" class="muted"></span>
-</div>
-</div>
-</header>
+            <!-- Content Area -->
+            <section class="content" id="content">
+                <div class="playlist-header">
+                    <div class="playlist-info">
+                        <h2 id="playlist-title">Experiences</h2>
+                        <p id="playlist-description">Professional roles and internships</p>
+                    </div>
+                </div>
 
+                <div class="tracks-container">
+                    <div class="tracks-header">
+                        <div class="track-number">#</div>
+                        <div class="track-title">Title</div>
+                        <div class="track-meta">Details</div>
+                        <div class="track-duration">Duration</div>
+                    </div>
+                    
+                    <div class="tracks-list" id="tracks-list">
+                        <!-- Tracks will be populated by JavaScript -->
+                    </div>
+                </div>
+            </section>
+        </main>
 
-<section class="table-wrap" aria-live="polite">
-<table class="table" aria-describedby="header-title header-desc">
-<thead>
-<tr>
-<th scope="col">#</th>
-<th scope="col">Title</th>
+        <!-- Player Bar -->
+        <div class="player-bar" id="player-bar">
+            <div class="now-playing">
+                <div class="track-info">
+                    <div class="track-cover">🎯</div>
+                    <div class="track-details">
+                        <div class="track-name" id="now-playing-title">Select a track</div>
+                        <div class="track-artist" id="now-playing-subtitle">Choose from the playlist</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="player-controls">
+                <button class="control-btn" id="prev-btn" title="Previous">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M3.3 1a.7.7 0 0 1 .7.7v5.15l9.95-5.744a.7.7 0 0 1 1.05.606v12.575a.7.7 0 0 1-1.05.607L4 9.149V14.3a.7.7 0 0 1-.7.7H1.7a.7.7 0 0 1-.7-.7V1.7a.7.7 0 0 1 .7-.7h1.6z"/>
+                    </svg>
+                </button>
+                <button class="control-btn control-btn--play" id="main-play-btn" title="Play/Pause">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" id="play-icon">
+                        <path d="M8 5v10l8-5-8-5z"/>
+                    </svg>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" id="pause-icon" style="display: none;">
+                        <path d="M8 3a1 1 0 0 1 1 1v12a1 1 0 1 1-2 0V4a1 1 0 0 1 1-1zm4 0a1 1 0 0 1 1 1v12a1 1 0 1 1-2 0V4a1 1 0 0 1 1-1z"/>
+                    </svg>
+                </button>
+                <button class="control-btn" id="next-btn" title="Next">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M12.7 1a.7.7 0 0 0-.7.7v5.15L2.05 1.107A.7.7 0 0 0 1 1.712v12.575a.7.7 0 0 0 1.05.607L12 9.149V14.3a.7.7 0 0 0 .7.7h1.6a.7.7 0 0 0 .7-.7V1.7a.7.7 0 0 0-.7-.7h-1.6z"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="player-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <div class="time-display">
+                    <span id="current-time">0:00</span>
+                    <span>/</span>
+                    <span id="total-time">0:00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
