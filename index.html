@@ -1,46 +1,48 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Siddhant Sood</title>
-  <link rel="stylesheet" href="styles.css" />
-  <!-- You can add favicon, meta tags, external fonts, etc. here -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Your Name — Playlists</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+<meta name="description" content="A playful, Spotify‑style portfolio that organizes experiences and projects into playlists." />
 </head>
 <body>
-  <header>
-    <h1>Welcome to SiddhantSood.com</h1>
-    <nav>
-      <ul>
-        <li><a href="#about">About Me</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+<div class="app" id="app">
+<!-- Sidebar -->
+<aside class="sidebar" aria-label="Playlists navigation">
+<div class="sidebar__brand" id="brand">Your Name</div>
+<nav id="sidebar-nav" class="sidebar__nav" role="navigation"></nav>
+<div class="sidebar__footer">© <span id="year"></span> You</div>
+</aside>
 
-  <main>
-    <section id="about">
-      <h2>About Me</h2>
-      <p>Hi—I’m Siddhant. I’m a CS student passionate about AI, algorithms, and teaching.</p>
-    </section>
 
-    <section id="projects">
-      <h2>Projects</h2>
-      <ul>
-        <li><a href="https://github.com/ssiddhantsood">GitHub Portfolio</a></li>
-        <!-- add more project links here -->
-      </ul>
-    </section>
+<!-- Main -->
+<main class="main" role="main">
+<header id="header" class="header" role="banner">
+<div class="header__cover" id="header-cover" aria-hidden="true">🎵</div>
+<div class="header__meta">
+<div class="header__kicker">Portfolio Playlist</div>
+<h1 id="header-title" class="header__title">Title</h1>
+<p id="header-desc" class="header__desc">Description</p>
+<div class="header__sub">
+<button id="play-toggle" class="btn" aria-pressed="false" aria-label="Play/Pause">Play</button>
+<label class="search">
+<input id="search" type="search" placeholder="Search within this playlist (press /)" aria-label="Search within this playlist"/>
+<span class="search__hint">/</span>
+</label>
+<span id="count" class="muted"></span>
+</div>
+</div>
+</header>
 
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>Email: <a href="mailto:you@siddhantsood.com">you@siddhantsood.com</a></p>
-    </section>
-  </main>
 
-  <footer>
-    <p>&copy; 2025 Siddhant Sood</p>
-  </footer>
-</body>
-</html>
+<section class="table-wrap" aria-live="polite">
+<table class="table" aria-describedby="header-title header-desc">
+<thead>
+<tr>
+<th scope="col">#</th>
+<th scope="col">Title</th>
