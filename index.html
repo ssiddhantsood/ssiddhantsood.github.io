@@ -3,154 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Siddhant Sood — Portfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Siddhant Sood</title>
     <link rel="stylesheet" href="style.css">
-    <meta name="description" content="Siddhant Sood - AI/ML Engineer & Researcher Portfolio" />
 </head>
 <body>
-    <div class="app" id="app">
-        <!-- Sidebar -->
-        <aside class="sidebar" aria-label="Navigation">
-            <div class="sidebar__brand">
-                <h1>Your Library</h1>
-                <button class="brand-home-btn" id="home-btn" title="Go to Home">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                        <path d="M10.707 2.293a1 1 0 0 0-1.414 0l-7 7a1 1 0 0 0 1.414 1.414L4 10.414V17a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-6.586l.293.293a1 1 0 0 0 1.414-1.414l-7-7z"/>
+    <div class="container">
+        <header>
+            <h1>Siddhant Sood</h1>
+            <div class="links">
+                <a href="https://github.com/ssiddhantsood" target="_blank" title="GitHub">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                     </svg>
-                </button>
+                </a>
+                <a href="https://www.linkedin.com/in/siddhantsood1" target="_blank" title="LinkedIn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                </a>
+                <a href="mailto:siddhantsood@gmail.com" title="Email">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                </a>
             </div>
-            
-            <div class="sidebar__section">
-                <h2 class="sidebar__section-title">Playlists</h2>
-                <nav class="sidebar__nav" role="navigation">
-                    <ul class="nav-list">
-                        <li><a href="#experiences" class="nav-item" data-playlist="experiences">
-                            <span class="nav-icon">🎯</span>
-                            <span>Experiences</span>
-                        </a></li>
-                        <li><a href="#projects" class="nav-item" data-playlist="projects">
-                            <span class="nav-icon">🛠️</span>
-                            <span>Projects</span>
-                        </a></li>
-                        <li><a href="#awards" class="nav-item" data-playlist="awards">
-                            <span class="nav-icon">🏆</span>
-                            <span>Awards & Highlights</span>
-                            </a></li>
-                        <li><a href="#contact" class="nav-item" data-playlist="contact">
-                            <span class="nav-icon">📬</span>
-                            <span>Contact & Profiles</span>
-                        </a></li>
-                    </ul>
-                </nav>
-            </div>
-            
-            <div class="sidebar__footer">
-                <div class="user-info">
-                    <div class="user-avatar">SS</div>
-                    <div class="user-details">
-                        <div class="user-name">Siddhant Sood</div>
-                    </div>
-                </div>
-            </div>
-        </aside>
+        </header>
 
-        <!-- Main Content -->
-        <main class="main" role="main">
-            <!-- Header -->
-            <header class="header" id="header">
-                <div class="header__cover" id="header-cover">
-                    <div class="cover-gradient"></div>
-                    <div class="profile-pic">
-                        <div class="profile-initials">SS</div>
-                    </div>
-                </div>
-                <div class="header__meta">
-                    <div class="header__kicker"></div>
-                    <h1 class="header__title" id="header-title">Experiences</h1>
-                    <p class="header__desc" id="header-desc">Showcasing my professional journey and achievements</p>
-                    <div class="header__actions">
-                        <div class="search-container">
-                            <input type="search" id="search" placeholder="Search..." class="search-input">
-                            <span class="search-icon">🔍</span>
-                        </div>
-                        <button class="btn btn--primary" id="play-btn">
-                            <span class="btn-icon">▶️</span>
-                        </button>
-                    </div>
-                </div>
-            </header>
+        <nav>
+            <a href="#home" class="tab-link active" data-tab="home">Home</a>
+            <a href="#research" class="tab-link" data-tab="research">Research</a>
+            <a href="#game" class="tab-link" data-tab="game">Other</a>
+        </nav>
 
-            <!-- Content Area -->
-            <section class="content" id="content">
-                <div class="playlist-header">
-                    <div class="playlist-info">
-                        <h2 id="playlist-title">Experiences</h2>
-                        <p id="playlist-description">Professional roles and internships</p>
+        <main>
+            <section class="tab-content active" id="home-content">
+                <div class="home-layout">
+                    <div class="intro-text">
+                        <p class="intro">Hi, my name is Siddhant Sood and I've worked on a few cool things. Currently spending most of my time doing research @ George Mason University.</p>
+                    </div>
+                    <div class="cat-container">
+                        <img src="cat.gif" alt="Cat" class="cat-gif">
                     </div>
                 </div>
+            </section>
 
-                <div class="tracks-container">
-                    <div class="tracks-header">
-                        <div class="track-number">#</div>
-                        <div class="track-title">Title</div>
-                        <div class="track-meta">Details</div>
-                        <div class="track-duration">Duration</div>
+
+            <section class="tab-content" id="research-content">
+                
+                <div class="item">
+                    <span class="number">01</span>
+                    <div>
+                        <h3>Incoming...</h3>
+                        <p>At a Forward Deployed Software Engineer at Palantir, I will be deploying AI systems into high-stakes operational environments.</p>
                     </div>
-                    
-                    <div class="tracks-list" id="tracks-list">
-                        <!-- Tracks will be populated by JavaScript -->
+                </div>
+                
+                
+                
+                <div class="item">
+                    <span class="number">02</span>
+                    <div>
+                        <h3>Agentic LLM Security Research</h3>
+                        <p>At GMU's SECSAT Lab (Security of Emerging Computer Systems and Technologies), researching vulnerabilities in agentic LLM systems, including MCP tool misuse, side-channel leakage, and agent fingerprinting. The work focuses on how open-source agent frameworks expand real-world attack surfaces in deployed AI.</p>
+                    </div>
+                </div>
+                
+                <div class="item">
+                    <span class="number">03</span>
+                    <div>
+                        <h3>Braess' Paradox in Oscillator Networks</h3>
+                        <p>At the George Mason Experimental Geometry Lab, derived the first analytical condition predicting when adding an edge causes Braess' Paradox in oscillator networks, and validated it across large-scale simulations. Presented at the Joint Mathematics Meetings 2026.</p>
+                    </div>
+                </div>
+                
+                <div class="item">
+                    <span class="number">04</span>
+                    <div>
+                        <h3>LLM-Driven Energy Grid Simulation</h3>
+                        <p>At MITRE, developed LLM-driven simulation agents that continuously updated and executed military energy-grid models for the Office of the Secretary of Defense, enabling live scenario analysis.</p>
+                    </div>
+                </div>
+                
+                <div class="item">
+                    <span class="number">05</span>
+                    <div>
+                        <h3>Semiconductor Microscope Image Alignment</h3>
+                        <p>At MITRE's AI & Autonomy Lab, built keypoint-based alignment pipelines for distorted semiconductor microscope imagery using LightGlue and OpenCV, enabling sub-pixel chip inspection,defect analysis and reconstruction.</p>
+                    </div>
+                </div>
+                
+                <div class="item">
+                    <span class="number">06</span>
+                    <div>
+                        <h3>On-Prem LLM Infrastructure</h3>
+                        <p>During my time at Blue Sky Innovators, deployed on-prem LLM infrastructure for over 100 employees, reducing inference costs by 80% while improving retrieval precision and hallucination rates for causal AI systems. Also built real-time meeting transcription and semantic search using fine-tuned NVIDIA NeMo and Whisper models.</p>
+                    </div>
+                </div>
+                
+                <div class="divider">High School (Class of 2024 @ tjhsst)</div>
+                
+                <div class="item">
+                    <span class="number">07</span>
+                    <div>
+                        <h3>AI Reddit for Professionals </h3>
+                        <p>Started Loops.ai with friends. Built the backend of an AI media-intelligence platform that ingested articles, generated podcasts, and produced personalized research feeds via collaborative filtering. 800 beta testers + 20k invested. YC S'24 interviee + Failed startup lol.</p>
+                    </div>
+                </div>
+                
+                <div class="item">
+                    <span class="number">08</span>
+                    <div>
+                        <h3>CloudGen : Text-to-3D Diffusion Pipeline</h3>
+                        <p>Built CloudGen, a diffusion-based text-to-3D pipeline that outputs print-ready CAD meshes and supports bidirectional editing by reversing and rerunning the generative process. This system won 1st Place Grand Prize at Regeneron ISEF 2024 along with other national special awards.</p>
+                    </div>
+                </div>
+                
+                <div class="item">
+                    <span class="number">09</span>
+                    <div>
+                        <h3>Started CerealCodes</h3>
+                        <p>Co-founded CerealCodes. Built and ran a global competitive programming platform with 472 teams across 77 countries, managing infrastructure, judging, and outreach. Raised over $40,000 in sponsorships while leading a distributed engineering and operations team.</p>
+                    </div>
+                </div>
+                
+                <div class="item">
+                    <span class="number">10</span>
+                    <div>
+                        <h3>AI-Powered Crisis Hotline</h3>
+                        <p>At PennApps (University of Pennsylvania Hackathon), I led a team to build a fully operational AI-powered crisis hotline using OpenAI, Twilio, and reinforcement learning to classify risk and escalate emergencies in real time. The system won 1st Place in AI at the collegiate hackathon (we were in high school).</p>
+                    </div>
+                </div>
+                
+                <div class="item">
+                    <span class="number">11</span>
+                    <div>
+                        <h3>Wearable Sound-to-Nerve Stimulation System</h3>
+                        <p> Developed a wearable system that maps sound direction to transcutaneous nerve stimulation using real-time spectrogram models and time-difference-of-arrival localization. The full cyber-physical pipeline ran on embedded hardware and was presented at the IEEE MIT Undergraduate Research Technology Conference.</p>
+                    </div>
+                </div>
+                
+                <div class="item">
+                    <span class="number">02</span>
+                    <div>
+                        <h3>Food Delivery System</h3>
+                        <p>At Y Point Analytics, designed and deployed a production multi-agent optimization system coordinating 700+ drivers delivering over 200,000 meals, solving routing and supply allocation under uncertainty. In parallel, started development on an AI therapist copilot that automated clinical documentation and provided continuous patient support.</p>
+                    </div>
+                </div>
+                
+                <div class="item">
+                    <span class="number">13</span>
+                    <div>
+                        <h3>ECG Signal Reconstruction from PPG Data</h3>
+                        <p>At Vytal.ai, built deep-learning systems that reconstructed ECG signals from phone-based PPG data, enabling low-cost cardiovascular screening without clinical hardware. This translated biomedical signal processing into deployable ML inside a $12M VC-backed health-tech startup focused on scalable diagnostics.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="tab-content" id="game-content">
+                <div class="game-container">
+                    <div class="game-info">
+                        <div class="game-message">99% sure it's impossible to score</div>
+                        <div class="beaten-counter">Beaten: <span id="beaten-count">0</span> times</div>
+                    </div>
+                    <canvas id="game-canvas" width="800" height="200"></canvas>
+                    <div class="game-instructions">
+                        <p>Use Arrow Keys or W/S to move your paddle.</p>
                     </div>
                 </div>
             </section>
         </main>
-
-        <!-- Player Bar -->
-        <div class="player-bar" id="player-bar">
-            <div class="now-playing">
-                <div class="track-info">
-                    <div class="track-cover">🎯</div>
-                    <div class="track-details">
-                        <div class="track-name" id="now-playing-title">Select a track</div>
-                        <div class="track-artist" id="now-playing-subtitle">Choose from the playlist</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="player-controls">
-                <button class="control-btn" id="prev-btn" title="Previous">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                        <path d="M3.3 1a.7.7 0 0 1 .7.7v5.15l9.95-5.744a.7.7 0 0 1 1.05.606v12.575a.7.7 0 0 1-1.05.607L4 9.149V14.3a.7.7 0 0 1-.7.7H1.7a.7.7 0 0 1-.7-.7V1.7a.7.7 0 0 1 .7-.7h1.6z"/>
-                    </svg>
-                </button>
-                <button class="control-btn control-btn--play" id="main-play-btn" title="Play/Pause">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" id="play-icon">
-                        <path d="M8 5v10l8-5-8-5z"/>
-                    </svg>
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" id="pause-icon" style="display: none;">
-                        <path d="M8 3a1 1 0 0 1 1 1v12a1 1 0 1 1-2 0V4a1 1 0 0 1 1-1zm4 0a1 1 0 0 1 1 1v12a1 1 0 1 1-2 0V4a1 1 0 0 1 1-1z"/>
-                    </svg>
-                </button>
-                <button class="control-btn" id="next-btn" title="Next">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                        <path d="M12.7 1a.7.7 0 0 0-.7.7v5.15L2.05 1.107A.7.7 0 0 0 1 1.712v12.575a.7.7 0 0 0 1.05.607L12 9.149V14.3a.7.7 0 0 0 .7.7h1.6a.7.7 0 0 0 .7-.7V1.7a.7.7 0 0 0-.7-.7h-1.6z"/>
-                    </svg>
-                </button>
-            </div>
-            
-            <div class="player-progress">
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progress-fill"></div>
-                </div>
-                <div class="time-display">
-                    <span id="current-time">0:00</span>
-                    <span>/</span>
-                    <span id="total-time">0:00</span>
-                </div>
-            </div>
-        </div>
     </div>
 
     <script src="app.js"></script>

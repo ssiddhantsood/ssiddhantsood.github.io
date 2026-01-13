@@ -1,592 +1,302 @@
-// Portfolio Data Structure
-const PORTFOLIO_DATA = {
-    home: {
-        id: 'home',
-        title: 'Siddhant Sood',
-        description: 'Previously @ MITRE, NASA, CACI, Blue Sky Innovators, two startups, and many projects. Currently trying to build something new! Love researching and building state-of-the-art AI systems. Always happy to chat: siddhantsood@gmail.com',
-        icon: '',
-        gradient: ['#1db954', '#0f7f3a'],
-        tracks: [
-            {
-                id: 'profile-summary',
-                title: 'Profile Summary',
-                meta: 'AI/ML Engineer with expertise in computer vision, large language models, and defense applications. Currently pursuing research in AI security and autonomy at MITRE, with a track record of winning major competitions and securing top-tier internships.',
-                duration: 'Professional Overview',
-                highlight: '',
-                type: 'standard'
-            },
-            {
-                id: 'key-achievements',
-                title: 'Key Achievements',
-                meta: 'ISEF 2024 Grand Prize Winner (Top 25 globally), YC AI Startup School Fellow, Top Secret Security Clearance, 5+ Research Internships at leading organizations including MITRE, NASA, and CACI.',
-                duration: 'Highlights',
-                highlight: '',
-                type: 'standard'
-            },
-            {
-                id: 'technical-expertise',
-                title: 'Technical Expertise',
-                meta: 'Machine Learning, Computer Vision, Large Language Models, AI Security, Defense Systems, Semiconductor ML, Energy Simulation, RAG Systems, Multi-Agent AI.',
-                duration: 'Skills',
-                highlight: '',
-                type: 'standard'
-            },
-            {
-                id: 'current-focus',
-                title: 'Current Focus',
-                meta: 'Building and fine-tuning high-precision ML models for semiconductor applications, developing AI agents for defense energy simulation, and advancing AI security research.',
-                duration: 'Active Work',
-                highlight: '',
-                type: 'standard'
-            }
-        ]
-    },
-    experiences: {
-        id: 'experiences',
-        title: 'Experiences 🎯',
-        description: 'My work experiences',
-        icon: '🎯',
-        gradient: ['#1ed760', '#0f7f3a'],
-        tracks: [
-            {
-                id: 'crimson-education',
-                title: 'Crimson Education — AI Research Advisor',
-                meta: 'Mentoring advanced AI research from concept to completion.',
-                duration: 'Jun 2024 – Present',
-                highlight: '',
-                type: 'standard'
-            },
-            {
-                id: 'george-mason',
-                title: 'George Mason University — Researcher | Teaching Assistant',
-                meta: 'Research on Graphons & Network Dynamical Systems, Teaching CS310: Data Structures',
-                duration: 'Aug 2025 – Present',
-                highlight: '',
-                type: 'standard'
-            },
-            {
-                id: 'mitre',
-                title: 'MITRE — AI Security Research Intern (AI & Autonomy Lab)',
-                meta: 'Built and fine-tuned high-precision ML models for semiconductor tile alignment and stitching; also automating defense energy simulation modeling systems using LLM agents for the Office of the Secretary of Defense (OSD).',
-                duration: 'June 2025 – August 2025',
-                highlight: '',
-                type: 'standard'
-            },
-            {
-                id: 'caci',
-                title: 'CACI — Software Development Internship',
-                meta: 'NCAPS Program.',
-                duration: 'May 2025 – June 2025',
-                highlight: '',
-                type: 'standard'
-            },
-            {
-                id: 'nasa',
-                title: 'NASA — Software Development Internship',
-                meta: 'NCAPS Program',
-                duration: 'May 2025 – June 2025',
-                highlight: '',
-                type: 'standard'
-            },
-            {
-                id: 'blue-sky',
-                title: 'Blue Sky Innovators — AI Research Intern',
-                meta: 'Designed on-prem LLM architecture for 100+ people, cutting costs by 80% and improving RAG precision by 30%.',
-                duration: 'May 2024 – May 2025',
-                highlight: '',
-                type: 'standard'
-            },
-            {
-                id: 'cereal-codes',
-                title: 'CerealCodes — Co-Founder',
-                meta: 'Founded a global coding contest with 472 teams across 77 countries. Led a 10-person operations team and secured $40,000+ in sponsorships.',
-                duration: 'Feb 2023 – Feb 2024',
-                highlight: '',
-                type: 'standard'
-            },
-            {
-                id: 'y-point',
-                title: 'Y Point Analytics — Machine Learning Intern',
-                meta: 'Built a multi-agent search algorithm used by 700+ drivers to deliver 200,000+ meals; developed an AI therapist co-pilot that automated documentation and provided 24/7 patient support.',
-                duration: 'May 2021 – Nov 2023',
-                highlight: '',
-                type: 'standard'
-            },
-            {
-                id: 'vytal',
-                title: 'Vytal.ai — AI/ML Researcher (Venture-backed)',
-                meta: 'Applied RNNs to recreate ECG data from PPG signals; $12M venture-backed startup.',
-                duration: 'Jan 2021 – Jan 2023',
-                highlight: '',
-                type: 'standard'
-            }
-        ]
-    },
-    projects: {
-        id: 'projects',
-        title: 'Projects 🛠️',
-        description: 'Cool Stuff I\'ve Worked On',
-        icon: '🛠️',
-        gradient: ['#3d91f4', '#1a5bb8'],
-        tracks: [
-            {
-                id: 'cloudgen',
-                title: 'CloudGen — 3D CAD Generation Using AI',
-                meta: 'Developed pipeline to transform text prompts e.g. “a chair” into 3D print-ready models. Integrated OpenAI latent diffusion architecture with a bilateral filter for cleaning and designed a novel editing framework for altering 3D prints/models in a VR environment.',
-                duration: 'April 2024',
-                highlight: 'Highlight',
-                type: 'highlight'
-            },
-            {
-                id: 'loops',
-                title: 'Loops.ai: Reddit for Professionals',
-                meta: 'Invested $25K and built AI-powered infrastructure for news aggregation, including recommendatino systems, real-time scraping systems and AI podcast generation.',
-                duration: 'March 2024',
-                highlight: '',
-                type: 'standard'
-            },
-            {
-                id: 'upenn-hackathon',
-                title: 'TheraSpeak - AI Suicide Hotline',
-                meta: 'Led a team of four to create a full-stack AI-powered suicide hotline within 36 hours using OpenAI APIs and Twilio.',
-                duration: 'Sept 2023',
-                highlight: '',
-                type: 'standard'
-            },
-            {
-                id: 'mit-blueprint',
-                title: 'Bites: Bias Detection App',
-                meta: 'Built a search app that ranks and filters articles based on bias, readability, and complexity in just 12 hours.',
-                duration: 'Jan 2023',
-                highlight: 'Hackathon Project',
-                type: 'standard'
-            }
-        ]
-    },
-    awards: {
-        id: 'awards',
-        title: 'Awards & Highlights 🏆',
-        description: 'Recognition and achievements',
-        icon: '🏆',
-        gradient: ['#b23df4', '#6d22a6'],
-        tracks: [
-            {
-                id: 'fellowships-events',
-                title: 'Fellowships & Events',
-                meta: 'Perplexity AI Business Fellowship, YC AI Startup School, YC Summer Conference 2025, @Scale: Networking 2025',
-                duration: 'June 2025',
-                highlight: '',
-                type: 'standard'
-            },
-            {
-                id: 'isef-grand-award',
-                title: '1st Place Grand Award – Regeneron International Science & Engineering Fair (ISEF)',
-                meta: '(Top 25 Project out of 10 Million projects globally). Featured in Society for Science.',
-                duration: 'May 2024',
-                highlight: '🏆',
-                type: 'highlight'
-            },
-            {
-                id: 'isef-extra-awards',
-                title: 'ISEF Extra Awards (Grouped)',
-                meta: '1st Place ISEF Award — United States Air Force Laboratory, 1st in Robotics, Software & Embedded Systems — Virginia State Science Fair, Grand Prize — Virginia Science Fair (Top 3 projects statewide), CIA STEAM Challenge Coin — Issued by the CIA, 1st Place Special Award — Offino, Honorable Mention + Invitation — Aerospace Corporation, Sigma Xi Scientific Research Honor Society Membership Nomination',
-                duration: 'April 2024',
-                highlight: '',
-                type: 'standard'
-            },
-            {
-                id: 'mit-blueprint-hackathon',
-                title: '3rd Place Grand Prize - MIT Blueprint Hackathon',
-                meta: 'Won 3rd Place Grand Prize at MIT Blueprint 2024. Organized by HackMIT',
-                duration: 'March 2024',
-                highlight: '',
-                type: 'standard'
-            },
-            {
-                id: 'usaco-gold',
-                title: 'Gold Division — USA Computing Olympiad (USACO)',
-                meta: 'Achieved Gold Division standing',
-                duration: 'December 2023',
-                highlight: '',
-                type: 'standard'
-            },
-            {
-                id: 'pennapps-ai',
-                title: '1st Place in AI — UPenn Hackathon',
-                meta: 'Won 1st Place in AI at PennApps 2023 (University of Pennsylvania Collegiate Hackathon). PennApps is the nation\'s oldest college hackathon',
-                duration: 'September 2023',
-                highlight: '🏆',
-                type: 'standard'
-            },
-            {
-                id: 'ieee-urtc',
-                title: 'IEEE MIT Undergraduate Research Technical Conference Invitation',
-                meta: 'Invited to present research at the IEEE MIT URTC 2023',
-                duration: 'September 2023',
-                highlight: '',
-                type: 'standard'
-            },
-            {
-                id: 'ap-scholar',
-                title: 'AP Scholar with Distinction',
-                meta: 'Awarded by the College Board for outstanding AP exam performance',
-                duration: 'July 2023',
-                highlight: '',
-                type: 'standard'
-            }
-        ]
-    },
-    contact: {
-        id: 'contact',
-        title: 'Contact & Profiles 📬',
-        description: 'Get in touch and view profiles',
-        icon: '📬',
-        gradient: ['#00d4aa', '#0099cc'],
-        tracks: [
-            {
-                id: 'email',
-                title: 'Email',
-                meta: 'siddhantsood@gmail.com',
-                duration: 'Primary Contact',
-                highlight: '',
-                type: 'link',
-                link: 'mailto:siddhantsood@gmail.com'
-            },
-            {
-                id: 'linkedin',
-                title: 'LinkedIn',
-                meta: 'linkedin.com/in/siddhantsood1',
-                duration: 'Professional Profile',
-                highlight: '',
-                type: 'link',
-                link: 'https://www.linkedin.com/in/siddhantsood1'
-            },
-            {
-                id: 'github',
-                title: 'GitHub',
-                meta: 'github.com/ssiddhantsood',
-                duration: 'Code Portfolio',
-                highlight: '',
-                type: 'link',
-                link: 'https://github.com/ssiddhantsood'
-            },
-            {
-                id: 'website',
-                title: 'Website',
-                meta: 'siddhantsood.com',
-                duration: 'Personal Site',
-                highlight: '',
-                type: 'link',
-                link: 'https://siddhantsood.com'
-            },
-            {
-                id: 'clearance',
-                title: 'Clearance',
-                meta: 'Top Secret',
-                duration: 'Security Clearance',
-                highlight: '',
-                type: 'standard'
-            },
-            {
-                id: 'classified',
-                title: '?',
-                meta: 'Super Secret. Do not click.',
-                duration: 'Classified (duh)',
-                highlight: '',
-                type: 'link',
-                link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
-            }
-        ]
-    }
-};
-
-// App State
-let currentPlaylist = 'home';
-let currentTrack = null;
-let isPlaying = false;
+// Tab Navigation
+let currentTab = 'home';
 
 // DOM Elements
 const elements = {
-    headerCover: document.getElementById('header-cover'),
-    headerTitle: document.getElementById('header-title'),
-    headerDesc: document.getElementById('header-desc'),
-    playlistTitle: document.getElementById('playlist-title'),
-    playlistDescription: document.getElementById('playlist-description'),
-    tracksList: document.getElementById('tracks-list'),
-    navItems: document.querySelectorAll('.nav-item'),
-    searchInput: document.getElementById('search'),
-    nowPlayingTitle: document.getElementById('now-playing-title'),
-    nowPlayingSubtitle: document.getElementById('now-playing-subtitle'),
-    progressFill: document.getElementById('progress-fill'),
-    currentTime: document.getElementById('current-time'),
-    totalTime: document.getElementById('total-time'),
-    playBtn: document.getElementById('play-btn'),
-    mainPlayBtn: document.getElementById('main-play-btn'),
-    homeBtn: document.getElementById('home-btn')
+    tabLinks: document.querySelectorAll('.tab-link'),
+    tabContents: document.querySelectorAll('.tab-content')
 };
 
 // Initialize App
 function initApp() {
-    loadPlaylist(currentPlaylist);
+    // Set initial tab from hash or default to home
+    const hash = window.location.hash.slice(1);
+    if (hash && ['home', 'research', 'game'].includes(hash)) {
+        switchTab(hash);
+    } else {
+        switchTab('home');
+    }
+    
+    // Initialize game if on game tab
+    if (hash === 'game' || window.location.hash === '#game') {
+        initGame();
+    }
+    
     setupEventListeners();
-    updatePlayerBar();
 }
 
-// Load Playlist
-function loadPlaylist(playlistId) {
-    const playlist = PORTFOLIO_DATA[playlistId];
-    if (!playlist) return;
-
-    currentPlaylist = playlistId;
+// Switch Tab
+function switchTab(tabId) {
+    currentTab = tabId;
     
-    // Add/remove home-page class for styling
-    const mainElement = document.querySelector('.main');
-    if (playlistId === 'home') {
-        mainElement.classList.add('home-page');
-    } else {
-        mainElement.classList.remove('home-page');
-    }
+    // Update URL hash
+    window.history.pushState(null, '', `#${tabId}`);
     
-    // Update header
-    if (playlistId === 'home') {
-        elements.headerCover.innerHTML = `
-            <div class="cover-gradient" style="background: linear-gradient(135deg, ${playlist.gradient[0]}, ${playlist.gradient[1]})"></div>
-            <div class="profile-pic">
-                <div class="profile-initials">SS</div>
-            </div>
-        `;
-    } else {
-        elements.headerCover.innerHTML = `
-            <div class="cover-gradient" style="background: linear-gradient(135deg, ${playlist.gradient[0]}, ${playlist.gradient[1]})"></div>
-            <div class="cover-icon">${playlist.icon}</div>
-        `;
-    }
-    
-    elements.headerTitle.textContent = playlist.title;
-    elements.headerDesc.textContent = playlist.description;
-    
-    // Update playlist info
-    elements.playlistTitle.textContent = playlist.title;
-    elements.playlistDescription.textContent = playlist.description;
-    
-    // Update navigation
-    updateNavigation(playlistId);
-    
-    // Render tracks
-    renderTracks(playlist.tracks);
-    
-    // Update search placeholder
-    elements.searchInput.placeholder = 'Search...';
-}
-
-// Render Tracks
-function renderTracks(tracks) {
-    elements.tracksList.innerHTML = '';
-    
-    tracks.forEach((track, index) => {
-        const trackElement = createTrackElement(track, index + 1);
-        elements.tracksList.appendChild(trackElement);
-    });
-}
-
-// Create Track Element
-function createTrackElement(track, number) {
-    const trackDiv = document.createElement('div');
-    trackDiv.className = 'track-item';
-    trackDiv.dataset.trackId = track.id;
-    
-    const highlightClass = track.type === 'highlight' ? 'track-highlight' : '';
-    const highlightText = track.highlight ? ` (${track.highlight})` : '';
-    
-    // Handle different track types
-    if (track.type === 'header') {
-        trackDiv.className = 'track-item track-item--header';
-        trackDiv.innerHTML = `
-            <div class="track-number">●</div>
-            <div class="track-title track-title--header">${track.title}</div>
-            <div class="track-meta">${track.meta}</div>
-            <div class="track-duration">${track.duration}</div>
-        `;
-    } else {
-        trackDiv.innerHTML = `
-            <div class="track-number">${number}</div>
-            <div class="track-title ${highlightClass}">${track.title}${highlightText}</div>
-            <div class="track-meta">${track.meta}</div>
-            <div class="track-duration">${track.duration}</div>
-        `;
-    }
-    
-    // Add click event
-    trackDiv.addEventListener('click', () => selectTrack(track));
-    
-    // Add special styling for different types
-    if (track.type === 'highlight') {
-        trackDiv.style.borderLeft = '4px solid var(--primary)';
-    } else if (track.type === 'minimal') {
-        trackDiv.style.opacity = '0.7';
-    } else if (track.type === 'playlist-link') {
-        trackDiv.style.cursor = 'pointer';
-        trackDiv.style.borderLeft = '4px solid var(--gradient-secondary)';
-    }
-    
-    return trackDiv;
-}
-
-// Select Track
-function selectTrack(track) {
-    currentTrack = track;
-    
-    // Handle different track types
-    if (track.type === 'playlist-link' && track.link) {
-        // Navigate to the linked playlist
-        loadPlaylist(track.link);
-        return;
-    } else if (track.type === 'link' && track.link) {
-        window.open(track.link, '_blank');
-    } else if (track.type === 'download' && track.link) {
-        // Simulate download
-        console.log(`Downloading: ${track.title}`);
-    } else if (track.type === 'header') {
-        // Don't do anything for header tracks
-        return;
-    }
-    
-    // Update player bar
-    elements.nowPlayingTitle.textContent = track.title;
-    elements.nowPlayingSubtitle.textContent = track.meta.substring(0, 50) + (track.meta.length > 50 ? '...' : '');
-    
-    // Update active track in list
-    document.querySelectorAll('.track-item').forEach(item => {
-        item.classList.remove('active');
-    });
-    document.querySelector(`[data-track-id="${track.id}"]`).classList.add('active');
-    
-    // Simulate playing
-    isPlaying = true;
-    updatePlayerBar();
-    simulateProgress();
-}
-
-// Update Navigation
-function updateNavigation(activeId) {
-    elements.navItems.forEach(item => {
-        item.classList.remove('active');
-        if (item.dataset.playlist === activeId) {
-            item.classList.add('active');
+    // Update active tab link
+    elements.tabLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.dataset.tab === tabId) {
+            link.classList.add('active');
         }
     });
+    
+    // Update active tab content
+    elements.tabContents.forEach(content => {
+        content.classList.remove('active');
+        if (content.id === `${tabId}-content`) {
+            content.classList.add('active');
+        }
+    });
+    
+    // Initialize game if switching to game tab
+    if (tabId === 'game') {
+        initGame();
+    }
+    
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // Setup Event Listeners
 function setupEventListeners() {
-    // Navigation
-    elements.navItems.forEach(item => {
-        item.addEventListener('click', (e) => {
+    // Tab navigation
+    elements.tabLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
             e.preventDefault();
-            const playlistId = item.dataset.playlist;
-            loadPlaylist(playlistId);
+            const tabId = link.dataset.tab;
+            switchTab(tabId);
         });
     });
     
-    // Search
-    elements.searchInput.addEventListener('input', (e) => {
-        const query = e.target.value.toLowerCase();
-        filterTracks(query);
-    });
-    
-    // Player controls
-    elements.mainPlayBtn.addEventListener('click', togglePlay);
-    elements.playBtn.addEventListener('click', () => {
-        if (currentTrack) {
-            selectTrack(currentTrack);
-        }
-    });
-
-    // Home button
-    elements.homeBtn.addEventListener('click', () => {
-        loadPlaylist('home');
-    });
-    
-    // Keyboard shortcuts
-    document.addEventListener('keydown', (e) => {
-        if (e.key === '/') {
-            e.preventDefault();
-            elements.searchInput.focus();
-        }
-    });
-}
-
-// Filter Tracks
-function filterTracks(query) {
-    const playlist = PORTFOLIO_DATA[currentPlaylist];
-    if (!playlist) return;
-    
-    const filteredTracks = playlist.tracks.filter(track => 
-        track.title.toLowerCase().includes(query) ||
-        track.meta.toLowerCase().includes(query) ||
-        track.duration.toLowerCase().includes(query)
-    );
-    
-    renderTracks(filteredTracks);
-}
-
-// Toggle Play
-function togglePlay() {
-    if (!currentTrack) return;
-    
-    isPlaying = !isPlaying;
-    updatePlayerBar();
-    
-    if (isPlaying) {
-        simulateProgress();
-    }
-}
-
-// Update Player Bar
-function updatePlayerBar() {
-    const playIcon = document.getElementById('play-icon');
-    const pauseIcon = document.getElementById('pause-icon');
-    
-    if (currentTrack) {
-        if (isPlaying) {
-            playIcon.style.display = 'none';
-            pauseIcon.style.display = 'block';
+    // Handle browser back/forward buttons
+    window.addEventListener('popstate', () => {
+        const hash = window.location.hash.slice(1);
+        if (hash && ['home', 'research', 'game'].includes(hash)) {
+            switchTab(hash);
         } else {
-            playIcon.style.display = 'block';
-            pauseIcon.style.display = 'none';
+            switchTab('home');
         }
-    } else {
-        playIcon.style.display = 'block';
-        pauseIcon.style.display = 'none';
-    }
+    });
+    
+    // Handle initial hash on page load
+    window.addEventListener('load', () => {
+        const hash = window.location.hash.slice(1);
+        if (hash && ['home', 'research', 'game'].includes(hash)) {
+            switchTab(hash);
+        }
+    });
 }
 
-// Simulate Progress - Much slower and smoother
-function simulateProgress() {
-    if (!isPlaying) return;
+// Pong Game
+let game = null;
+
+function initGame() {
+    if (game) {
+        // Reset game if already initialized
+        if (game.cleanup) game.cleanup();
+        game = null;
+    }
     
-    let progress = 0;
-    const interval = setInterval(() => {
-        if (!isPlaying) {
-            clearInterval(interval);
-            return;
+    const canvas = document.getElementById('game-canvas');
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    const beatenCountEl = document.getElementById('beaten-count');
+    
+    // Game state
+    let playerPaddle = {
+        x: 20,
+        y: canvas.height / 2 - 40,
+        width: 10,
+        height: 80,
+        speed: 5
+    };
+    
+    let aiPaddle = {
+        x: canvas.width - 30,
+        y: canvas.height / 2 - 40,
+        width: 10,
+        height: 80,
+        speed: 4
+    };
+    
+    let ball = {
+        x: canvas.width / 2,
+        y: canvas.height / 2,
+        radius: 8,
+        velocityX: 4,
+        velocityY: 3
+    };
+    
+    let playerScore = 0;
+    let aiScore = 0;
+    let gameRunning = false;
+    let animationId = null;
+    let keys = {};
+    
+    // Get beaten counter
+    let beatenCount = parseInt(localStorage.getItem('pongBeatenCount') || '0');
+    beatenCountEl.textContent = beatenCount;
+    
+    function drawPaddle(paddle) {
+        ctx.fillStyle = '#333';
+        ctx.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
+    }
+    
+    function drawBall() {
+        ctx.fillStyle = '#333';
+        ctx.beginPath();
+        ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+        ctx.fill();
+    }
+    
+    function drawCenterLine() {
+        ctx.strokeStyle = '#e0e0e0';
+        ctx.lineWidth = 2;
+        ctx.setLineDash([5, 5]);
+        ctx.beginPath();
+        ctx.moveTo(canvas.width / 2, 0);
+        ctx.lineTo(canvas.width / 2, canvas.height);
+        ctx.stroke();
+        ctx.setLineDash([]);
+    }
+    
+    function updatePlayerPaddle() {
+        if (keys['ArrowUp'] || keys['w'] || keys['W']) {
+            playerPaddle.y = Math.max(0, playerPaddle.y - playerPaddle.speed);
+        }
+        if (keys['ArrowDown'] || keys['s'] || keys['S']) {
+            playerPaddle.y = Math.min(canvas.height - playerPaddle.height, playerPaddle.y + playerPaddle.speed);
+        }
+    }
+    
+    function updateAIPaddle() {
+        // Simple AI: follow the ball
+        const paddleCenter = aiPaddle.y + aiPaddle.height / 2;
+        const ballY = ball.y;
+        
+        if (ballY < paddleCenter - 10) {
+            aiPaddle.y = Math.max(0, aiPaddle.y - aiPaddle.speed);
+        } else if (ballY > paddleCenter + 10) {
+            aiPaddle.y = Math.min(canvas.height - aiPaddle.height, aiPaddle.y + aiPaddle.speed);
+        }
+    }
+    
+    function updateBall() {
+        ball.x += ball.velocityX;
+        ball.y += ball.velocityY;
+        
+        // Top and bottom wall collision
+        if (ball.y - ball.radius <= 0 || ball.y + ball.radius >= canvas.height) {
+            ball.velocityY = -ball.velocityY;
         }
         
-        progress += 0.5; // Much slower increment
-        if (progress > 100) {
-            progress = 0;
+        // Player paddle collision
+        if (ball.x - ball.radius <= playerPaddle.x + playerPaddle.width &&
+            ball.x - ball.radius >= playerPaddle.x &&
+            ball.y >= playerPaddle.y &&
+            ball.y <= playerPaddle.y + playerPaddle.height) {
+            ball.velocityX = Math.abs(ball.velocityX);
+            // Add some angle based on where ball hits paddle
+            const hitPos = (ball.y - playerPaddle.y) / playerPaddle.height;
+            ball.velocityY = (hitPos - 0.5) * 8;
         }
         
-        elements.progressFill.style.width = `${progress}%`;
+        // AI paddle collision
+        if (ball.x + ball.radius >= aiPaddle.x &&
+            ball.x + ball.radius <= aiPaddle.x + aiPaddle.width &&
+            ball.y >= aiPaddle.y &&
+            ball.y <= aiPaddle.y + aiPaddle.height) {
+            ball.velocityX = -Math.abs(ball.velocityX);
+            // Add some angle based on where ball hits paddle
+            const hitPos = (ball.y - aiPaddle.y) / aiPaddle.height;
+            ball.velocityY = (hitPos - 0.5) * 8;
+        }
         
-        // Update time display - much slower progression
-        const currentSeconds = Math.floor((progress / 100) * 300); // 5 minutes total
-        const minutes = Math.floor(currentSeconds / 60);
-        const seconds = currentSeconds % 60;
-        elements.currentTime.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-        elements.totalTime.textContent = '5:00';
+        // Score points
+        if (ball.x < 0) {
+            aiScore++;
+            resetBall();
+        } else if (ball.x > canvas.width) {
+            playerScore++;
+            // Increment beaten counter
+            beatenCount++;
+            beatenCountEl.textContent = beatenCount;
+            localStorage.setItem('pongBeatenCount', beatenCount);
+            resetBall();
+        }
+    }
+    
+    function resetBall() {
+        ball.x = canvas.width / 2;
+        ball.y = canvas.height / 2;
+        ball.velocityX = (Math.random() > 0.5 ? 1 : -1) * 4;
+        ball.velocityY = (Math.random() > 0.5 ? 1 : -1) * 3;
+    }
+    
+    function gameLoop() {
+        if (!gameRunning) return;
         
-    }, 200); // Slower update interval
+        // Clear canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Update
+        updatePlayerPaddle();
+        updateAIPaddle();
+        updateBall();
+        
+        // Draw
+        drawCenterLine();
+        drawPaddle(playerPaddle);
+        drawPaddle(aiPaddle);
+        drawBall();
+        
+        // Draw scores (hidden but still tracked)
+        // Scores are tracked but not displayed
+        
+        animationId = requestAnimationFrame(gameLoop);
+    }
+    
+    function startGame() {
+        if (gameRunning) return;
+        
+        // Reset game state
+        playerPaddle.y = canvas.height / 2 - 40;
+        aiPaddle.y = canvas.height / 2 - 40;
+        playerScore = 0;
+        aiScore = 0;
+        gameRunning = true;
+        resetBall();
+        
+        gameLoop();
+    }
+    
+    // Event listeners
+    const keyDownHandler = (e) => {
+        keys[e.key] = true;
+    };
+    
+    const keyUpHandler = (e) => {
+        keys[e.key] = false;
+    };
+    
+    document.addEventListener('keydown', keyDownHandler);
+    document.addEventListener('keyup', keyUpHandler);
+    
+    // Start the game
+    startGame();
+    
+    game = {
+        canvas,
+        ctx,
+        cleanup: () => {
+            document.removeEventListener('keydown', keyDownHandler);
+            document.removeEventListener('keyup', keyUpHandler);
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+            }
+        }
+    };
 }
 
 // Initialize when DOM is loaded
