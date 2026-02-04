@@ -87,12 +87,11 @@ function setupEventListeners() {
     });
 }
 
-// Pong Game
+// Snake Game – 10x10, smooth like Google Snake
 let game = null;
 
 function initGame() {
     if (game) {
-        // Reset game if already initialized
         if (game.cleanup) game.cleanup();
         game = null;
     }
@@ -101,189 +100,241 @@ function initGame() {
     if (!canvas) return;
     
     const ctx = canvas.getContext('2d');
-    const beatenCountEl = document.getElementById('beaten-count');
+    const highScoreEl = document.getElementById('high-score');
     
-    // Game state
-    let playerPaddle = {
-        x: 20,
-        y: canvas.height / 2 - 40,
-        width: 10,
-        height: 80,
-        speed: 5
-    };
+    const tileCount = 10;
+    const gridSize = canvas.width / tileCount;
+    const tickMs = 120;
     
-    let aiPaddle = {
-        x: canvas.width - 30,
-        y: canvas.height / 2 - 40,
-        width: 10,
-        height: 80,
-        speed: 4
-    };
-    
-    let ball = {
-        x: canvas.width / 2,
-        y: canvas.height / 2,
-        radius: 8,
-        velocityX: 4,
-        velocityY: 3
-    };
-    
-    let playerScore = 0;
-    let aiScore = 0;
+    let snake = [{ x: 5, y: 5 }];
+    let prevSnake = null;
+    let food = { x: 7, y: 7 };
+    let dx = 0;
+    let dy = 0;
+    let score = 0;
+    let highScore = parseInt(localStorage.getItem('snakeHighScore') || '0');
     let gameRunning = false;
-    let animationId = null;
-    let keys = {};
+    let nextDir = { dx: 0, dy: 0 };
+    let progress = 1;
+    let lastStepTime = 0;
+    let rafId = null;
     
-    // Get beaten counter
-    let beatenCount = parseInt(localStorage.getItem('pongBeatenCount') || '0');
-    beatenCountEl.textContent = beatenCount;
+    highScoreEl.textContent = highScore;
     
-    function drawPaddle(paddle) {
-        ctx.fillStyle = '#333';
-        ctx.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
+    function placeFood() {
+        let ok = false;
+        do {
+            food.x = Math.floor(Math.random() * tileCount);
+            food.y = Math.floor(Math.random() * tileCount);
+            ok = !snake.some(seg => seg.x === food.x && seg.y === food.y);
+        } while (!ok);
     }
     
-    function drawBall() {
-        ctx.fillStyle = '#333';
+    function roundRect(x, y, w, h, r) {
+        r = Math.min(r, w / 2, h / 2);
         ctx.beginPath();
-        ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+        ctx.moveTo(x + r, y);
+        ctx.arcTo(x + w, y, x + w, y + h, r);
+        ctx.arcTo(x + w, y + h, x, y + h, r);
+        ctx.arcTo(x, y + h, x, y, r);
+        ctx.arcTo(x, y, x + w, y, r);
+        ctx.closePath();
+    }
+    
+    function lerp(a, b, t) {
+        return a + (b - a) * t;
+    }
+    
+    function draw(interpolate) {
+        const pad = 1.5;
+        const cell = gridSize - pad;
+        
+        ctx.fillStyle = '#f8f9fa';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        ctx.strokeStyle = '#e9ecef';
+        ctx.lineWidth = 1;
+        for (let i = 1; i < tileCount; i++) {
+            ctx.beginPath();
+            ctx.moveTo(i * gridSize, 0);
+            ctx.lineTo(i * gridSize, canvas.height);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(0, i * gridSize);
+            ctx.lineTo(canvas.width, i * gridSize);
+            ctx.stroke();
+        }
+        
+        const drawSeg = (seg, isHead) => {
+            const x = seg.x * gridSize + pad / 2;
+            const y = seg.y * gridSize + pad / 2;
+            roundRect(x, y, cell, cell, 4);
+            ctx.fillStyle = isHead ? '#2d5a3d' : '#4a7c59';
+            ctx.fill();
+            ctx.strokeStyle = 'rgba(0,0,0,0.06)';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+        };
+        
+        if (interpolate && prevSnake && prevSnake.length === snake.length) {
+            snake.forEach((seg, i) => {
+                const prev = prevSnake[i];
+                const sx = lerp(prev.x, seg.x, progress) * gridSize + pad / 2;
+                const sy = lerp(prev.y, seg.y, progress) * gridSize + pad / 2;
+                roundRect(sx, sy, cell, cell, 4);
+                ctx.fillStyle = i === 0 ? '#2d5a3d' : '#4a7c59';
+                ctx.fill();
+                ctx.strokeStyle = 'rgba(0,0,0,0.06)';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+            });
+        } else {
+            snake.forEach((seg, i) => drawSeg(seg, i === 0));
+        }
+        
+        const fx = food.x * gridSize + pad;
+        const fy = food.y * gridSize + pad;
+        const fw = gridSize - pad * 2;
+        ctx.fillStyle = '#c45c4a';
+        roundRect(fx, fy, fw, fw, 5);
         ctx.fill();
-    }
-    
-    function drawCenterLine() {
-        ctx.strokeStyle = '#e0e0e0';
-        ctx.lineWidth = 2;
-        ctx.setLineDash([5, 5]);
-        ctx.beginPath();
-        ctx.moveTo(canvas.width / 2, 0);
-        ctx.lineTo(canvas.width / 2, canvas.height);
+        ctx.strokeStyle = 'rgba(0,0,0,0.06)';
+        ctx.lineWidth = 1;
         ctx.stroke();
-        ctx.setLineDash([]);
     }
     
-    function updatePlayerPaddle() {
-        if (keys['ArrowUp'] || keys['w'] || keys['W']) {
-            playerPaddle.y = Math.max(0, playerPaddle.y - playerPaddle.speed);
+    function doStep() {
+        dx = nextDir.dx;
+        dy = nextDir.dy;
+        
+        if (dx === 0 && dy === 0) return;
+        
+        prevSnake = snake.map(s => ({ x: s.x, y: s.y }));
+        
+        const head = { x: snake[0].x + dx, y: snake[0].y + dy };
+        
+        if (head.x < 0 || head.x >= tileCount || head.y < 0 || head.y >= tileCount) {
+            gameOver();
+            return;
         }
-        if (keys['ArrowDown'] || keys['s'] || keys['S']) {
-            playerPaddle.y = Math.min(canvas.height - playerPaddle.height, playerPaddle.y + playerPaddle.speed);
+        
+        if (snake.some(seg => seg.x === head.x && seg.y === head.y)) {
+            gameOver();
+            return;
         }
+        
+        snake.unshift(head);
+        
+        if (head.x === food.x && head.y === food.y) {
+            score++;
+            if (score > highScore) {
+                highScore = score;
+                highScoreEl.textContent = highScore;
+                localStorage.setItem('snakeHighScore', highScore);
+            }
+            placeFood();
+        } else {
+            snake.pop();
+        }
+        
+        progress = 0;
     }
     
-    function updateAIPaddle() {
-        // Simple AI: follow the ball
-        const paddleCenter = aiPaddle.y + aiPaddle.height / 2;
-        const ballY = ball.y;
-        
-        if (ballY < paddleCenter - 10) {
-            aiPaddle.y = Math.max(0, aiPaddle.y - aiPaddle.speed);
-        } else if (ballY > paddleCenter + 10) {
-            aiPaddle.y = Math.min(canvas.height - aiPaddle.height, aiPaddle.y + aiPaddle.speed);
-        }
-    }
-    
-    function updateBall() {
-        ball.x += ball.velocityX;
-        ball.y += ball.velocityY;
-        
-        // Top and bottom wall collision
-        if (ball.y - ball.radius <= 0 || ball.y + ball.radius >= canvas.height) {
-            ball.velocityY = -ball.velocityY;
-        }
-        
-        // Player paddle collision
-        if (ball.x - ball.radius <= playerPaddle.x + playerPaddle.width &&
-            ball.x - ball.radius >= playerPaddle.x &&
-            ball.y >= playerPaddle.y &&
-            ball.y <= playerPaddle.y + playerPaddle.height) {
-            ball.velocityX = Math.abs(ball.velocityX);
-            // Add some angle based on where ball hits paddle
-            const hitPos = (ball.y - playerPaddle.y) / playerPaddle.height;
-            ball.velocityY = (hitPos - 0.5) * 8;
-        }
-        
-        // AI paddle collision
-        if (ball.x + ball.radius >= aiPaddle.x &&
-            ball.x + ball.radius <= aiPaddle.x + aiPaddle.width &&
-            ball.y >= aiPaddle.y &&
-            ball.y <= aiPaddle.y + aiPaddle.height) {
-            ball.velocityX = -Math.abs(ball.velocityX);
-            // Add some angle based on where ball hits paddle
-            const hitPos = (ball.y - aiPaddle.y) / aiPaddle.height;
-            ball.velocityY = (hitPos - 0.5) * 8;
-        }
-        
-        // Score points
-        if (ball.x < 0) {
-            aiScore++;
-            resetBall();
-        } else if (ball.x > canvas.width) {
-            playerScore++;
-            // Increment beaten counter
-            beatenCount++;
-            beatenCountEl.textContent = beatenCount;
-            localStorage.setItem('pongBeatenCount', beatenCount);
-            resetBall();
-        }
-    }
-    
-    function resetBall() {
-        ball.x = canvas.width / 2;
-        ball.y = canvas.height / 2;
-        ball.velocityX = (Math.random() > 0.5 ? 1 : -1) * 4;
-        ball.velocityY = (Math.random() > 0.5 ? 1 : -1) * 3;
-    }
-    
-    function gameLoop() {
+    function gameLoop(now) {
         if (!gameRunning) return;
         
-        // Clear canvas
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        rafId = requestAnimationFrame(gameLoop);
         
-        // Update
-        updatePlayerPaddle();
-        updateAIPaddle();
-        updateBall();
+        if (!lastStepTime) lastStepTime = now;
+        const elapsed = now - lastStepTime;
+        lastStepTime = now;
         
-        // Draw
-        drawCenterLine();
-        drawPaddle(playerPaddle);
-        drawPaddle(aiPaddle);
-        drawBall();
+        const moving = nextDir.dx !== 0 || nextDir.dy !== 0;
         
-        // Draw scores (hidden but still tracked)
-        // Scores are tracked but not displayed
+        if (moving) {
+            progress += elapsed / tickMs;
+            if (progress >= 1) {
+                doStep();
+                if (!gameRunning) return;
+                lastStepTime = now;
+            }
+        }
         
-        animationId = requestAnimationFrame(gameLoop);
+        draw(moving && prevSnake && progress < 1);
+    }
+    
+    function gameOver() {
+        gameRunning = false;
+        if (rafId) {
+            cancelAnimationFrame(rafId);
+            rafId = null;
+        }
+        ctx.fillStyle = 'rgba(0,0,0,0.5)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#333';
+        ctx.font = '20px -apple-system, BlinkMacSystemFont, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('Game Over', canvas.width / 2, canvas.height / 2 - 14);
+        ctx.font = '13px -apple-system, BlinkMacSystemFont, sans-serif';
+        ctx.fillStyle = '#555';
+        ctx.fillText('Score: ' + score, canvas.width / 2, canvas.height / 2 + 16);
+        ctx.fillText('Press SPACE to restart', canvas.width / 2, canvas.height / 2 + 40);
+        
+        const restart = (e) => {
+            if (e.code === 'Space') {
+                e.preventDefault();
+                document.removeEventListener('keydown', restart);
+                startGame();
+            }
+        };
+        document.addEventListener('keydown', restart);
     }
     
     function startGame() {
-        if (gameRunning) return;
-        
-        // Reset game state
-        playerPaddle.y = canvas.height / 2 - 40;
-        aiPaddle.y = canvas.height / 2 - 40;
-        playerScore = 0;
-        aiScore = 0;
+        snake = [{ x: 5, y: 5 }];
+        prevSnake = null;
+        dx = 0;
+        dy = 0;
+        nextDir = { dx: 0, dy: 0 };
+        score = 0;
+        progress = 1;
+        lastStepTime = 0;
         gameRunning = true;
-        resetBall();
+        placeFood();
+        draw(false);
         
-        gameLoop();
+        ctx.fillStyle = 'rgba(255,255,255,0.9)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#666';
+        ctx.font = '14px -apple-system, BlinkMacSystemFont, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('Press an arrow key to start', canvas.width / 2, canvas.height / 2);
+        
+        const keyHandler = (e) => {
+            if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].indexOf(e.code) !== -1) {
+                e.preventDefault();
+                document.removeEventListener('keydown', keyHandler);
+                if (e.code === 'ArrowUp' && nextDir.dy !== 1) nextDir = { dx: 0, dy: -1 };
+                if (e.code === 'ArrowDown' && nextDir.dy !== -1) nextDir = { dx: 0, dy: 1 };
+                if (e.code === 'ArrowLeft' && nextDir.dx !== 1) nextDir = { dx: -1, dy: 0 };
+                if (e.code === 'ArrowRight' && nextDir.dx !== -1) nextDir = { dx: 1, dy: 0 };
+                lastStepTime = performance.now();
+                rafId = requestAnimationFrame(gameLoop);
+            }
+        };
+        document.addEventListener('keydown', keyHandler);
     }
     
-    // Event listeners
     const keyDownHandler = (e) => {
-        keys[e.key] = true;
-    };
-    
-    const keyUpHandler = (e) => {
-        keys[e.key] = false;
+        if (!gameRunning) return;
+        if (e.code === 'ArrowUp' && nextDir.dy !== 1) nextDir = { dx: 0, dy: -1 };
+        if (e.code === 'ArrowDown' && nextDir.dy !== -1) nextDir = { dx: 0, dy: 1 };
+        if (e.code === 'ArrowLeft' && nextDir.dx !== 1) nextDir = { dx: -1, dy: 0 };
+        if (e.code === 'ArrowRight' && nextDir.dx !== -1) nextDir = { dx: 1, dy: 0 };
     };
     
     document.addEventListener('keydown', keyDownHandler);
-    document.addEventListener('keyup', keyUpHandler);
     
-    // Start the game
     startGame();
     
     game = {
@@ -291,10 +342,7 @@ function initGame() {
         ctx,
         cleanup: () => {
             document.removeEventListener('keydown', keyDownHandler);
-            document.removeEventListener('keyup', keyUpHandler);
-            if (animationId) {
-                cancelAnimationFrame(animationId);
-            }
+            if (rafId) cancelAnimationFrame(rafId);
         }
     };
 }

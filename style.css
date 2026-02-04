@@ -278,24 +278,20 @@ a:hover {
     margin-bottom: 20px;
 }
 
-.game-message {
+.high-score-display {
     font-size: 1.1em;
     font-weight: 500;
     color: #333;
 }
 
-.beaten-counter {
-    font-size: 0.9em;
-    color: #666;
-}
-
 #game-canvas {
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
-    background: #f9f9f9;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    background: #f5f5f5;
     cursor: pointer;
     max-width: 100%;
     height: auto;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
 }
 
 .game-instructions {
