@@ -40,7 +40,7 @@ h1 {
 }
 
 .links a {
-    color: #666;
+    color: #1a1a1a;
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -71,7 +71,7 @@ h1 {
 
 .intro {
     font-size: 1.1em;
-    color: #4a4a4a;
+    color: #1a1a1a;
     line-height: 1.8;
 }
 
@@ -112,7 +112,7 @@ nav {
 nav a {
     margin-right: 30px;
     text-decoration: none;
-    color: #666;
+    color: #1a1a1a;
     font-size: 0.95em;
     transition: color 0.2s;
 }
@@ -141,7 +141,7 @@ main {
 
 .intro {
     font-size: 1.1em;
-    color: #4a4a4a;
+    color: #1a1a1a;
     margin-bottom: 60px;
     max-width: 700px;
 }
@@ -168,7 +168,7 @@ h2 {
 .divider {
     text-align: center;
     margin: 60px 0 40px;
-    color: #999;
+    color: #1a1a1a;
     font-size: 0.9em;
     letter-spacing: 0.2em;
     position: relative;
@@ -215,7 +215,7 @@ h2 {
 
 .number {
     font-size: 0.8em;
-    color: #999;
+    color: #1a1a1a;
     font-weight: 500;
     min-width: 30px;
     font-variant-numeric: tabular-nums;
@@ -230,13 +230,13 @@ h2 {
 
 .item p {
     font-size: 0.85em;
-    color: #666;
+    color: #1a1a1a;
     line-height: 1.7;
     margin-bottom: 6px;
 }
 
 .item p:first-of-type {
-    color: #999;
+    color: #1a1a1a;
     font-size: 0.8em;
     margin-bottom: 8px;
 }
@@ -244,7 +244,7 @@ h2 {
 a {
     color: #1a1a1a;
     text-decoration: underline;
-    text-decoration-color: #ccc;
+    text-decoration-color: #1a1a1a;
     transition: text-decoration-color 0.2s;
 }
 
@@ -281,7 +281,7 @@ a:hover {
 .high-score-display {
     font-size: 1.1em;
     font-weight: 500;
-    color: #333;
+    color: #1a1a1a;
 }
 
 #game-canvas {
@@ -296,7 +296,7 @@ a:hover {
 
 .game-instructions {
     margin-top: 20px;
-    color: #666;
+    color: #1a1a1a;
     font-size: 0.9em;
     text-align: center;
 }
